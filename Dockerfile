@@ -1,21 +1,24 @@
-# Usar imagen oficial de PHP con Apache
+# Usar imagen oficial PHP con Apache
 FROM php:8.2-apache
 
-# Instalar extensiones necesarias para Laravel y PostgreSQL
+# Instalar extensiones necesarias
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     unzip \
     git \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Instalar Composer (gestor de dependencias PHP)
+# Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar los archivos de la app
+# Copiar el proyecto
 COPY ./web /var/www/html/
 
-# Establecer directorio de trabajo
+# Cambiar DocumentRoot de Apache
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
+# Dar permisos (opcional en local)
+RUN chown -R www-data:www-data /var/www/html
+
 WORKDIR /var/www/html
 
-# Dar permisos adecuados (opcional para entornos locales)
-RUN chown -R www-data:www-data /var/www/html
