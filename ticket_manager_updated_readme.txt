@@ -117,7 +117,78 @@ docker-compose up -d
 4. Usa pgAdmin para gestionar las tablas de la base de datos.
 
 ---
+Tecnologías usadas (actualizado 29/04/25)
+-------------------
+- PHP 8.2
+- Laravel 11
+- Apache2 (en contenedor Docker)
+- PostgreSQL 14 (en contenedor Docker)
+- Docker Compose
+- Node.js (en Windows para compilar assets frontend)
+- Git y GitHub para control de versiones
 
+Pasos hechos hasta ahora
+-------------------------
+- Configuración de Raspberry Pi como servidor (opcional).
+- Instalación de PHP, Apache, PostgreSQL en contenedores Docker.
+- Instalación de Laravel.
+- Instalación de Laravel Breeze (sistema de login, registro y dashboard).
+- Correcciones en configuración de Apache para permitir rutas amigables de Laravel.
+- Instalación de Node.js y compilación de assets frontend con Vite (npm run build).
+- Proyecto totalmente funcional con login, registro y dashboard.
+
+Comandos importantes
+---------------------
+Levantar contenedores:
+cd C:\app_ticket_manager
+docker-compose up -d
+
+Ver logs de contenedores:
+docker-compose logs -f
+
+Acceder a contenedor:
+docker exec -it app_ticket_manager-web-1 bash
+
+Ejecutar migraciones:
+php artisan migrate
+
+Compilar frontend:
+cd C:\app_ticket_manager\web
+npm run build
+
+Git comandos:
+cd C:\app_ticket_manager
+git add .
+git commit -m "Mensaje claro de cambios"
+git push
+
+Checklist diario de trabajo profesional
+-----------------------------------------
+Inicio de día:
+- Abrir CMD o PowerShell
+- cd C:\app_ticket_manager
+- docker-compose up -d
+- code C:\app_ticket_manager (abrir VSCode)
+- Planificar la tarea del día
+
+Durante el trabajo:
+- Programar rutas, controladores, modelos, migraciones
+- Probar cambios en navegador (http://localhost:8080/)
+- Si modificas frontend: npm run build
+
+Final del día o final de tarea:
+- git add .
+- git commit -m "Descripción clara de lo hecho"
+- git push
+- Anotar lo pendiente para mañana (opcional)
+
+Notas importantes
+-------------------
+- No subir carpeta /vendor/ a GitHub (Laravel trae .gitignore correcto).
+- Cada commit debe representar un avance concreto.
+- Docker solo se levanta una vez al día.
+- Frontend (npm) solo se compila si modificas vistas o estilos.
+- Usa siempre http://localhost:8080 para probar.
 ## 👨‍💻 Autor
 
 - [Tu Nombre]
