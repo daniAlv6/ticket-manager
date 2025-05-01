@@ -17,6 +17,9 @@ COPY ./web /var/www/html/
 # Cambiar DocumentRoot de Apache
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
+# Habilitar mod_rewrite para rutas amigables
+RUN a2enmod rewrite
+
 # Dar permisos (opcional en local)
 RUN chown -R www-data:www-data /var/www/html
 
