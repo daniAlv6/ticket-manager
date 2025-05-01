@@ -3,47 +3,64 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra con todos los proyectos
      */
     public function index()
     {
-        return response()->json(\App\Models\Project::all());
+        return response()->json(Project::all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda un nuevo proyecto
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $project = Project::create($data);
+
+        return response()->json($project, 201);
     }
 
     /**
-     * Display the specified resource.
+     * Muestra el proyecto especificado (ID)
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return response()->json($project);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el proyecto especificado (ID)
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->validate([
+            'name'        => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|nullable|string',
+        ]);
+
+        $project->update($data);
+
+        return response()->json($project);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina el proyecto especificado (ID)
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return response()->json(null, 204);
     }
 }
