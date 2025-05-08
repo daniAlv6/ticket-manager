@@ -17,7 +17,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: userpass
     ports:
-      - "5432:5432"  # (opcional si quieres acceder desde otros programas externos)
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -32,5 +32,17 @@ services:
     depends_on:
       - db
 
+  frontend: 
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    stdin_open: true
+    tty: true
+
 volumes:
   postgres_data:
+

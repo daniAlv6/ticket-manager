@@ -1,30 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ProjectController;
-use App\Http\Controllers\Api\TicketController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\TicketTypeController;
-use App\Http\Controllers\Api\TicketPriorityController;
-use App\Http\Controllers\Api\TicketStatusController;
+use App\Http\Controllers\Api\{
+    TicketController,
+    ProjectController,
+    UserController,
+    TicketTypeController,
+    TicketPriorityController,
+    TicketStatusController,
+    AuthController
+};
 
+// Ruta de prueba (puedes quitarla si ya no la necesitas)
 Route::get('/example', function () {
     return response()->json(['message' => 'This is an API route']);
 });
 
-// ------------------   Rutas de tu API   ------------------
+// Rutas públicas (no requieren autenticación)
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login',    [AuthController::class, 'login']);
 
-// CRUD completo para proyectos
-Route::apiResource('projects', ProjectController::class);
+Route::get('/ticket-types',      [TicketTypeController::class, 'index']);
+Route::get('/ticket-priorities', [TicketPriorityController::class, 'index']);
+Route::get('/ticket-statuses',   [TicketStatusController::class, 'index']);
 
-// CRUD completo para tickets
-Route::apiResource('tickets',  TicketController::class);
+// Rutas protegidas (requieren token Sanctum)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
 
-// CRUD completo para usuarios
-Route::apiResource('users', UserController::class);
-
-Route::get('ticket-types',     [TicketTypeController::class,    'index']);
-
-Route::get('ticket-priorities',[TicketPriorityController::class,'index']);
-
-Route::get('ticket-statuses',  [TicketStatusController::class,  'index']);
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('tickets', TicketController::class);
+    Route::apiResource('projects', ProjectController::class);
+});
