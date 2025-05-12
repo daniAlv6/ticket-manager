@@ -1,6 +1,6 @@
-// src/pages/Register.jsx
 import { useState } from 'react';
 import axios from 'axios';
+import '../App.css'; // Asegúrate que esto apunta a tu CSS animado
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', password_confirmation: '' });
@@ -19,14 +19,49 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Registro</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <input type="text" name="name" placeholder="Nombre" onChange={handleChange} />
-      <input type="email" name="email" placeholder="Correo" onChange={handleChange} />
-      <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} />
-      <input type="password" name="password_confirmation" placeholder="Confirmar contraseña" onChange={handleChange} />
-      <button type="submit">Registrarse</button>
-    </form>
+    <div className="container">
+      <div className="top"></div>
+      <div className="bottom"></div>
+      <div className="center">
+        <h2>Registro</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            value={form.name}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password_confirmation"
+            placeholder="Confirmar contraseña"
+            value={form.password_confirmation}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Registrarse</button>
+        </form>
+        {error && <p className="error">{error}</p>}
+      </div>
+    </div>
   );
 }
+

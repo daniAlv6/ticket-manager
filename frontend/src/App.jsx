@@ -1,23 +1,27 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-
+import TicketList from './pages/TicketList';
+import NavBar from './components/NavBar';
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <div style={{ maxWidth: 400, margin: '0 auto', padding: '2rem', textAlign: 'center' }}>
-        <h1>Gestor de Tickets</h1>
-
-        <nav style={{ marginBottom: '1rem' }}>
-          <Link to="/login" style={{ marginRight: '1rem' }}>Iniciar sesión</Link>
-          <Link to="/register">Registrarse</Link>
-        </nav>
+      <div className="container">
+        <div className="header">
+          <h1>Gestor de Tickets</h1>
+          <nav>
+            <Link to="/login">Iniciar sesión</Link>
+            <Link to="/register">Registrarse</Link>
+          </nav>
+        </div>
 
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/tickets" element={<TicketList />} />
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="*" element={<p>Página no encontrada</p>} />
         </Routes>
@@ -27,4 +31,5 @@ function App() {
 }
 
 export default App;
+
 

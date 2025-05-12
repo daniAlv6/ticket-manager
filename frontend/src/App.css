@@ -40,3 +40,186 @@
 .read-the-docs {
   color: #888;
 }
+
+/* -------------------  ESTILO BASE ------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: white !important;
+  color: #333;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.container {
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* -------------------  EFECTO OCULTAR/REVELAR ------------------- */
+
+.header nav,
+.center {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.container:hover .header nav,
+.container:hover .center {
+  opacity: 1;
+}
+
+/* -------------------  FONDOS GIRATORIOS ------------------- */
+
+.container:hover .top:before,
+.container:active .top:before,
+.container:hover .top:after,
+.container:active .top:after,
+.container:hover .bottom:before,
+.container:active .bottom:before,
+.container:hover .bottom:after,
+.container:active .bottom:after {
+  margin-left: 200px;
+  transform-origin: -200px 50%;
+  transition-delay: 0s;
+}
+
+.top:before,
+.top:after,
+.bottom:before,
+.bottom:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 300vmax;
+  height: 300vmax;
+  top: 50%;
+  left: 50%;
+  margin-top: -150vmax;
+  transform-origin: 0 50%;
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+  z-index: 10;
+  opacity: 0.65;
+  transition-delay: 0.2s;
+}
+
+.top:before { transform: rotate(45deg); background: #e46569; }
+.top:after  { transform: rotate(135deg); background: #ecaf81; }
+.bottom:before { transform: rotate(-45deg); background: #60b8d4; }
+
+/* -------------------  BLOQUE HEADER ------------------- */
+
+.header {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 20;
+}
+
+.header h1 {
+  margin-bottom: 1rem;
+  font-size: 2.8rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.header nav a {
+  margin: 0 1rem;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #e46569;
+  border: 2px solid #e46569;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header nav a:hover {
+  background-color: #e46569;
+  color: white;
+}
+
+/* -------------------  BLOQUE FORMULARIO ------------------- */
+
+.center {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.center h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+.center input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f5f5f5;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.center input:focus {
+  border-color: #60b8d4;
+  outline: none;
+}
+
+.center button {
+  width: 100%;
+  padding: 12px;
+  background-color: #60b8d4;
+  color: white;
+  border: 2px solid #60b8d4;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.center button:hover {
+  background-color: white;
+  color: #60b8d4;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+

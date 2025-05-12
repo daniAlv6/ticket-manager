@@ -36,3 +36,15 @@ export async function getTickets() {
   const response = await client.get('/tickets');
   return response.data;
 }
+
+// Saber si el usuario esta logeado o no
+export function isLoggedIn() {
+  return !!localStorage.getItem('authToken');
+}
+
+//Logout
+export function logout() {
+  localStorage.removeItem('authToken');
+}
+
+
