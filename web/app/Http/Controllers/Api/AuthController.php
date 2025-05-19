@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
@@ -28,26 +30,29 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $data = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        $request->validate([
+            'login'    => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        $user = User::where('email', $data['email'])->first();
+        $loginType = filter_var($request->login, FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'name';
 
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
-            return response()->json(['message' => 'Credenciales inválidas'], 401);
+        if (! Auth::attempt([$loginType => $request->login, 'password' => $request->password])) {
+            return response()->json(['message' => 'Credenciales incorrectas'], 401);
         }
 
-        $token = $user->createToken('api-token')->plainTextToken;
+        $user  = Auth::user();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'access_token' => $token,
+            'token_type'   => 'Bearer',
+            'user'         => $user,
+        ]);
     }
 
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Sesión cerrada']);
-    }
+
 }
 

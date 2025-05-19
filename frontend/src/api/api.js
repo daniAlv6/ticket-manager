@@ -14,18 +14,19 @@ export function getToken() {
 
 // Crea una instancia de Axios con el token (si existe)
 export function apiClient() {
+  const token = getToken();
   return axios.create({
     baseURL: API_BASE,
-    headers: {
-      Authorization: `Bearer ${getToken()}`
-    }
+    headers: token
+      ? { Authorization: `Bearer ${token}` }
+      : {}
   });
 }
 
-// Login
-export async function login(email, password) {
-  const response = await axios.post(`${API_BASE}/login`, { email, password });
-  const token = response.data.token;
+// Login: lee correctamente el campo access_token
+export async function login(login, password) {
+  const response = await axios.post(`${API_BASE}/login`, { login, password });
+  const token = response.data.access_token;  // ← antes tenías response.data.token
   saveToken(token);
   return token;
 }
@@ -37,14 +38,15 @@ export async function getTickets() {
   return response.data;
 }
 
-// Saber si el usuario esta logeado o no
+// Saber si el usuario está logueado o no
 export function isLoggedIn() {
-  return !!localStorage.getItem('authToken');
+  return !!getToken();
 }
 
-//Logout
+// Logout
 export function logout() {
   localStorage.removeItem('authToken');
 }
+
 
 

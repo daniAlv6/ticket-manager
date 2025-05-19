@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\{
     TicketController,
     ProjectController,
@@ -8,7 +9,7 @@ use App\Http\Controllers\Api\{
     TicketTypeController,
     TicketPriorityController,
     TicketStatusController,
-    AuthController
+    
 };
 
 // Ruta de prueba (puedes quitarla si ya no la necesitas)
