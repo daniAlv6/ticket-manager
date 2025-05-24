@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\{
@@ -28,6 +29,11 @@ Route::get('/ticket-statuses',   [TicketStatusController::class, 'index']);
 // Rutas protegidas (requieren token Sanctum)
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Obtener datos del usuario autenticado
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
     Route::apiResource('users', UserController::class);
     Route::apiResource('tickets', TicketController::class);

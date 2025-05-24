@@ -1,0 +1,65 @@
+/* Sidebar.css */
+
+/*
+  Sidebar principal de la aplicación:
+  - Ancho fijo y fondo azul
+  - Texto en blanco
+  - Layout vertical, con login/usuario arriba y logout abajo
+*/
+
+.sidebar {
+    /* Ancho fijo para el panel lateral */
+    width: 240px;
+    /* Color de fondo azul suave */
+    background: #60b8d4;
+    /* Texto en blanco para contraste */
+    color: white;
+    /* Flexbox vertical para distribuir elementos */
+    display: flex;
+    flex-direction: column;
+    /* Espaciado interno */
+    padding: 1.5rem;
+    /* Sombra lateral para dar profundidad */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar__brand {
+    /* Margen inferior para separar del resto */
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar__brand h2 {
+    /* Tamaño de fuente para el título del sidebar */
+    font-size: 1.5rem;
+    /* Eliminar márgenes por defecto */
+    margin: 0;
+  }
+  
+  .sidebar__user {
+    /* Espacio debajo del saludo */
+    margin-bottom: 2rem;
+    /* Fuente un poco más grande para visibilidad */
+    font-size: 1.1rem;
+  }
+  
+  .sidebar__logout {
+    /* Empuja el botón hasta el fondo del sidebar */
+    margin-top: auto;
+    /* Botón transparente con borde blanco */
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    /* Espaciado interno */
+    padding: 0.5rem 1rem;
+    /* Bordes redondeados suaves */
+    border-radius: 4px;
+    /* Cursor puntero al pasar por encima */
+    cursor: pointer;
+    /* Transición suave para el hover */
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar__logout:hover {
+    /* Fondo semitransparente al pasar el ratón */
+    background: rgba(255, 255, 255, 0.2);
+  }

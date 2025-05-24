@@ -1,0 +1,53 @@
+/* Contenedor principal */
+.ticket-detail {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Título */
+  .ticket-detail__title {
+    margin-top: 0;
+    font-size: 1.75rem;
+    color: #374151;
+  }
+  
+  /* Estado */
+  .ticket-detail__status {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  /* Variantes de color por estado */
+  .status--abierto {
+    background: #f87171; color: white;
+  }
+  .status--en-progreso {
+    background: #fbbf24; color: white;
+  }
+  .status--resuelto {
+    background: #34d399; color: white;
+  }
+  
+  /* Descripción */
+  .ticket-detail__description {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  /* Fecha */
+  .ticket-detail__date {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  

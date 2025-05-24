@@ -1,0 +1,47 @@
+/* TicketCard.css */
+
+/*
+  Estilos para el componente TicketCard:
+  - Tarjeta blanca con borde y sombra al hover
+  - Estado coloreado según el status
+*/
+
+.ticket-card {
+    /* Fondo blanco y borde ligero */
+    background: white;
+    border: 2px solid #ddd;
+    /* Bordes redondeados suaves */
+    border-radius: 6px;
+    /* Espaciado interno */
+    padding: 1rem;
+    /* Puntero al pasar sobre la tarjeta */
+    cursor: pointer;
+    /* Transición para sombra en hover */
+    transition: box-shadow 0.2s;
+  }
+  
+  .ticket-card:hover {
+    /* Sombra ligera para resaltar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo del texto del estado */
+  .ticket-card__status {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  /* Variantes de borde según estado */
+  .ticket-card--open {
+    border-color: #f87171;    /* Rojo suave */
+  }
+  
+  .ticket-card--progress {
+    border-color: #fbbf24;    /* Amarillo */
+  }
+  
+  .ticket-card--resolved {
+    border-color: #34d399;    /* Verde */
+  }

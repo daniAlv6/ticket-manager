@@ -1,68 +1,63 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* ======================== */
+/* RESET & ALTURA COMPLETA  */
+/* ======================== */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html,
+body,
+#root {
+  height: 100%;        /* Para que flex 100vh funcione siempre */
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ============================= */
+/* ESTILOS DEL FONDO ANIMADO     */
+/* (Login / Registro)            */
+/* ============================= */
+
+/* Aquí van tus reglas previas de .container, .top, .bottom, .center, etc. */
+/* No las repetimos para no interferir con login/registro. */
+
+/* ============================= */
+/* LAYOUT GENERAL: SIDEBAR + MAIN */
+/* ============================= */
+
+.layout {
+  display: flex;       /* sidebar a la izquierda, main-content a la derecha */
+  height: 100vh;       /* ocupa toda la altura de la ventana */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.main-content {
+  flex: 1;             /* ocupa todo el ancho restante */
+  padding: 2rem;       /* espacio interno */
+  overflow-y: auto;    /* scroll si el contenido crece */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* ============================= */
+/* GRID DE TARJETAS DE TICKETS    */
+/* ============================= */
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;           /* separación entre tarjetas */
+}
+
+/* ============================= */
+/* AÑADE AQUÍ MÁS ESTILOS GLOBALES */
+/* (por ejemplo, tipografía, enlaces, etc.) */
+/* ============================= */
+
+/* Ejemplo: Reset de listas */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tipografía base */
+body {
+  font-family: 'Inter', sans-serif;
+  background: white;
+  color: #333;
 }

@@ -1,0 +1,22 @@
+/* Header.css */
+
+/*
+  Estilos para el componente Header:
+  - Margen inferior para separar de la página
+  - Tamaño y color del título principal
+*/
+
+.header-page {
+    /* Espacio debajo del header */
+    margin-bottom: 1.5rem;
+  }
+  
+  .header-page h1 {
+    /* Tamaño de fuente grande para título */
+    font-size: 2rem;
+    /* Color gris oscuro para buen contraste */
+    color: #374151;
+    /* Eliminamos márgenes por defecto */
+    margin: 0;
+  }
+  

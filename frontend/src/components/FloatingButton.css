@@ -1,0 +1,46 @@
+
+/* src/components/FloatingButton.css */
+
+/*
+  Estilos para FloatingButton:
+  - Botón circular fijo en la esquina inferior derecha
+  - Colores y sombras para destacarlo
+*/
+
+.floating-btn {
+  /* Posición fija sobre el contenido */
+  position: fixed;
+  bottom: 2rem;            /* Distancia inferior */
+  right: 2rem;             /* Distancia lateral */
+
+  /* Tamaño y tipografía */
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2rem;
+  line-height: 1;
+
+  /* Colores de fondo y texto */
+  background: #60b8d4;     /* Azul suave */
+  color: white;
+
+  /* Sin borde y con radio completo para círculo */
+  border: none;
+  border-radius: 50%;
+
+  /* Cursor y accesibilidad */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sombra para elevar el botón */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Transición suave de color al hover */
+  transition: background 0.2s;
+}
+
+.floating-btn:hover {
+  /* Fondo más oscuro al pasar el ratón */
+  background: #4ba6b2;
+}
